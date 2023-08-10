@@ -6,11 +6,6 @@
  */
 int main(void)
 {
-        char str[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19";
-        for(int i=0;i<58;i++)
-        {
-                putchar(str[i]);
-        }
-        putchar('\n');
+	write(2,"and that piece of art is useful\" - Dora Korpar, 2015-10-19\n",59);
         return (1);
 }
