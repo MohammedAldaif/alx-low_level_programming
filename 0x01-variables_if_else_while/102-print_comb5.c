@@ -13,6 +13,7 @@ int main(void)
 	n = 0;
 	while (n <= 99)
 	{
+		m = n;
 		while (n <= 99)
 		{
 			if (m != n)
