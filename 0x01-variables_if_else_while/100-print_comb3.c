@@ -13,19 +13,24 @@ int main(void)
 	i = 0;
 	j = 1;
 
-	for (i = 0 ; i < 9 ; i++)
+	while (i < 10)
 	{
-		for (j = 1 ; j <= 9 ; j++)
+		while (j < 10)
 		{
-
-			putchar(48 + i);
-			putchar(48 + j);
-			if (j != 9)
+			if (j > i)
 			{
-				putchar(',');
-				putchar(' ');
+				putchar(48 + i);
+				putchar(48 + j);
+				if (i < 8)
+				{
+					putchar(',');
+					putchar(' ');
+				}
 			}
+			j++;
 		}
+	i++;
+	j = i + 1;
 	}
 	putchar('\n');
 	return (0);
