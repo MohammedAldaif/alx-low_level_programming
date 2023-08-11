@@ -12,14 +12,16 @@ int main(void)
 	/* your code goes here */
 
 	counter = 0;
-	while (counter < 9)
+	while (counter <=  9)
 	{
 		putchar(48 + counter);
-		putchar(',');
-		putchar(' ');
+		if (counter < 9)
+		{
+			putchar(',');
+			putchar(' ');
+		}
 		counter++;
 	}
-	putchar(48 + counter);
 	putchar('\n');
 	return (0);
 }
