@@ -6,7 +6,6 @@
  */
 int main(void)
 {
-	int i;
 	unsigned long f1;
 	unsigned long f2;
 	unsigned long sum;
@@ -15,7 +14,7 @@ int main(void)
 	f1 = 0;
 	f2 = 1;
 
-	while (true)
+	while (1)
 	{
 		sum = f1 + f2;
 		if (sum > 4000000)
