@@ -5,21 +5,24 @@
  *
  * Return: void
  */
-
-void print_alphabet_x10(void)
+int main(void)
 {
-	char a = 'a';
-	int i = 0;
-
-	while (i < 10)
+	void print_alphabet_x10(void)
 	{
-		while (a <= 'z')
+		char a = 'a';
+		int i = 0;
+
+		while (i < 10)
 		{
-			_putchar(a);
-			a++;
+			while (a <= 'z')
+			{
+				_putchar(a);
+				a++;
+			}
+			putchar('\n');
+			a = 'a';
+			i++;
 		}
-		putchar('\n');
-		a = 'a';
-		i++;
 	}
+	print_alphabet_x10();
 }
