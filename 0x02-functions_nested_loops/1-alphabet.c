@@ -1,4 +1,4 @@
-#include"main.h"
+#include "main.h"
 
 /**
  * main - check the code
@@ -7,7 +7,16 @@
  */
 void print_alphabet(void)
 {
-	for (int i ='a'; i <= 'z'; i++)
+	int i = 'a';
+	while (i <= 'z')
+	{
 		_putchar(i);
+		i++;
+	}
 	_putchar('\n');
+}
+int main(void)
+{
+	print_alphabet();
+	return (0);
 }
