@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _isalpha - function
+ * print_sign - function
  *@n: character input
  * Return: 1 if char , 0 otherwise
  */
@@ -22,5 +22,5 @@ int print_sign(int n)
 	{
 		_putchar('0');
 	}
-	return(0);
+	return (0);
 }
