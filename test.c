@@ -7,11 +7,7 @@
  */
 int main(void)
 {
-	char str[] = "and";
-	for(int i=0;i<2;i++)
-	{
-		putchar(str[i]);
-	}
+	putchar(97);
 	putchar('\n');
 	return (0);
 }

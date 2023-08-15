@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "you commit msg: "
+read msg
+git add .
+git commit -m "Add task $msg file"
+git push
