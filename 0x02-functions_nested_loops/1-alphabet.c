@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * main - check the code
- *
- * Return: Always 0.
+ * print_alphabet - uses  _putchar to print characters.
+ * Return: chars in lowercase
  */
 void print_alphabet(void)
 {
 	int i = 'a';
+
 	while (i <= 'z')
 	{
 		_putchar(i);
