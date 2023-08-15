@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * main - Entry point
+ * print_alphabet - uses _putchar function to print vharacters from a to z
  *
- * Return: Always 0 (Success)
+ * Return: void
  */
 
 void print_alphabet(void)
@@ -16,5 +16,4 @@ void print_alphabet(void)
 		a++;
 	}
 	_putchar('\n');
-	return;
 }
