@@ -9,22 +9,15 @@
 
 void rev_string(char *s)
 {
-	int i = 0;
-	int n, j = 0;
-	int arr[100];
+	int a, count = 0;
+	char c;
 
-	while (*s != '\0')
-		i++, s++;
-	n = i;
-	for (i = n; i >= 0; i--)
+	for (a = 0; s[a] != '\0'; a++)
+		count++;
+	for (a = 0; a < (count / 2); a++)
 	{
-		s--;
-		j++;
-		arr[j] = *s;
+		c = s[a];
+		s[a] = s[count - 1 - a];
+		s[count - 1 - a] = c;
 	}
-	for (i = 0; i <= n; i++)
-	{
-		s[i] = arr[i];
-	}
-	putchar('\n');
 }
