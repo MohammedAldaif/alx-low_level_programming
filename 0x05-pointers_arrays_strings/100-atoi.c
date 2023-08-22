@@ -1,41 +1,23 @@
 #include "main.h"
 
-void print_rev(char *);
-
 /**
  * _atoi - check the code for Holberton School students.
- *@s: input
- * Return: Always 0.
+ * @c: input
+ * Return: 0.
  */
-int _atoi(char *s)
+
+int _atoi(char *c)
 {
-	int i, d, n, len, f, digit;
+	unsigned int n = 0;
+	int sign = 1;
 
-	i = 0;
-	d = 0;
-	n = 0;
-	len = 0;
-	f = 0;
-	digit = 0;
-
-	while (s[len] != '\0')
-	{
-		if (s[i] == '-')
-			++d;
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			digit = s[i] - '0';
-			if (d % 2)
-				digit = -digit;
-			n = n * 10 + digit;
-			f = 1;
-			if (s[i + 1] < '0' || s[i + 1] > '9')
-				break;
-			f = 0;
-		}
-		i++;
-	}
-	if (f == 0)
-		return (0);
-	return (n);
+	do {
+		if (*c == '-')
+			sign *= -1;
+		else if (*c >= '0' && *c <= '9')
+			n = (n * 10) + (*c - '0');
+		else if (n > 0)
+			break;
+	} while (*c++);
+	return (n * sign);
 }
