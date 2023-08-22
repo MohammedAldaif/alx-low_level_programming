@@ -1,6 +1,6 @@
 #include <stdio.h>
-
-void print_rev(char *);
+#include <stdlib.h>
+#include <time.h>
 
 /**
  * main - check the code for Holberton School students.
