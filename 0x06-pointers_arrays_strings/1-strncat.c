@@ -15,7 +15,7 @@ int strlength(char *str)
 
 	while (*(str + i) != '\0')
 		i++;
-	return (i); /* should return 6 */
+return (i); /* should return 6 */
 }
 
 /**
