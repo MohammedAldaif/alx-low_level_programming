@@ -1,14 +1,17 @@
 #include "main.h"
 
 /**
- * rot13 - check the code for Holberton School students.
- * @c: input
+ * infinite_add - check the code for Holberton School students.
+ * @n1: input
+ * @n2: input
+ * @r: input
+ * @size_r: input
  * Return: pointer.
  */
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int i = 0,j = 0,k, l = 0, f, s, d = 0;
+	int i = 0, j = 0, k, l = 0, f, s, d = 0;
 
 	while (n1[i] != '\0')
 		i++;
@@ -18,7 +21,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		l = i;
 	else
 		l = j;
-	if(l + 1 > size_r)
+	if (l + 1 > size_r)
 		return (0);
 	r[l] = '\0';
 	for (k = l - 1; k >= 0; k--)
