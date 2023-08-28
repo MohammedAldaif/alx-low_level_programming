@@ -7,19 +7,24 @@
  * Return: pointer.
  */
 
-char *_strpbrk(char *s, char *accept);
+char *_strpbrk(char *s, char *accept)
 {
-	while (*(s + j) != '\0')
-        {
-                while (*(accept + i) != '\0')
-                {
-                        if (*(s + j) - *(accept + i) == 0)
-                                return (s + i);
-                        i++;
-                }
-                if (*(accept + i) == '\0')
-                        break;
-                i = 0, j++;
-        }
-	return NULL;
+	int i = 0, j;
+	char *p;
+
+	while (*(s + i) != '\0')
+	{
+		j = 0;
+		while (*(accept + j) != '\0')
+		{
+			if (*(accept + j) == *(s + i))
+			{
+				p = s + i;
+				return (p);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
