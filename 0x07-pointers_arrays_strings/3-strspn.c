@@ -20,11 +20,8 @@ unsigned int _strspn(char *s, char *accept)
 			i++;
 		}
 		if (*(accept + i) == '\0')
-		{
 			break;
-		}
-		i = 0;
-		j++;
+		i = 0, j++;
 	}
 	return (j);
 }
