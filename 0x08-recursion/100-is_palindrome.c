@@ -13,7 +13,7 @@ int strlength(char *c)
 {
 	int i = 0;
 
-	if *(c > '\0')
+	if (*c > '\0')
 		i += strlength(c + 1) + 1;
 	return (i);
 }
