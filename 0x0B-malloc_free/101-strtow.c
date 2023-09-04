@@ -1,43 +1,89 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
-* **strtow - function
-* @str : input
-* Return: pointer
-*/
+ * number - function
+ * @str: input
+ * Return: int
+ */
+
+int number_of_words(char *str)
+{
+	int a, num = 0;
+
+	for (a = 0; str[a] != '\0'; a++)
+	{
+		if (*str == ' ')
+			str++;
+		else
+		{
+			for (; str[a] != ' ' && str[a] != '\0'; a++)
+				str++;
+			num++;
+		}
+	}
+	return (num);
+}
+
+/**
+ * free_everything - function
+ * @string: input
+ * @i: input
+ */
+
+void free_everything(char **string, int i)
+{
+	for (; i > 0;)
+		free(string[--i]);
+	free(string);
+}
+
+/**
+ * strtow - function
+ * @str: input
+ * Return: pointer
+ */
 
 char **strtow(char *str)
 {
-	char **ptr;
-	int i;
-	int j = 0;
-	int size = 0;
+	int total_words = 0, b = 0, c = 0, length = 0;
+	char **words, *found_word;
 
-	if (str == NULL)
+	if (str == 0 || *str == 0)
 		return (NULL);
-
-	for (i = 0 ; str[i] != '\0' ; i++)
-	{
-		if (str[i] != 32)
-			size++;
-	}
-
-	ptr = malloc(sizeof(char) * size);
-
-	if (ptr == NULL)
+	total_words = number_of_words(str);
+	if (total_words == 0)
 		return (NULL);
-
-	for (i = 0 ; str[i] != '\0' ; i++)
+	words = malloc((total_words + 1) * sizeof(char *));
+	if (words == 0)
+		return (NULL);
+	for (; *str != '\0' &&  b < total_words;)
 	{
-		if (str[i] != 32)
-		{
-			*ptr[j] = str[i];
-			j++;
-		}
+		if (*str == ' ')
+			str++;
 		else
 		{
+			found_word = str;
+			for (; *str != ' ' && *str != '\0';)
+			{
+				length++;
+				str++;
+			}
+			words[b] = malloc((length + 1) * sizeof(char));
+			if (words[b] == 0)
+			{
+				free_everything(words, b);
+				return (NULL);
+			}
+			while (*found_word != ' ' && *found_word != '\0')
+			{
+				words[b][c] = *found_word;
+				found_word++;
+				c++;
+			}
+			words[b][c] = '\0';
+			b++; c = 0; length = 0; str++;
 		}
 	}
-	return (ptr);
+	return (words);
 }
