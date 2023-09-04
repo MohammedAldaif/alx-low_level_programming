@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * number - function
+ * number_of_words - function
  * @str: input
  * Return: int
  */
@@ -82,7 +82,10 @@ char **strtow(char *str)
 				c++;
 			}
 			words[b][c] = '\0';
-			b++; c = 0; length = 0; str++;
+			b++;
+			c = 0;
+			length = 0;
+			str++;
 		}
 	}
 	return (words);
