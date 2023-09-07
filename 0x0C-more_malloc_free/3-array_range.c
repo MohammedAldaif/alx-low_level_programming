@@ -1,31 +1,30 @@
 #include "main.h"
 
 /**
- * array_range - function
- * @min: input
- * @max: input
- * Return: pointer.
- */
+* array_range - function
+* @min: input
+* @max: input
+* Return: pointer to the address of the memory block
+*/
 
 int *array_range(int min, int max)
 {
-	int i, length, j = 0;
-	int *ptr;
+	int *ptr;;
+	int i, j = 0;
 
-	length = (max - min) + 1;
-
-	if (min < max)
-	{
+	if (min > max)
 		return (NULL);
-	}
-	ptr =  malloc(sizeof(int) * length);
-
-	if (ptr == NULL)
-		return (NULL);
-	for (i = min; i <= max ; i++)
+	ptr = malloc(sizeof(*ptr) * ((max - min) + 1));
+	if (ptr != NULL)
 	{
-		*(ptr + j) = i;
-		j++;
+		for (i = min; i <= max; i++)
+		{
+			ptr[j] = i;
+			j++;
+		}
+		return (ptr);
 	}
-	return (ptr);
+	else
+		return (NULL);
+
 }
