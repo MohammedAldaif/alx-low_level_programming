@@ -1,10 +1,12 @@
-nclude "bootcamp.h"
+#include "main.h"
 #include <limits.h>
+
 /**
  * str_len - finds string length
  * @str: input pointer to string
  * Return: length of string
  */
+
 int str_len(char *str)
 {
 	int len;
@@ -13,12 +15,14 @@ int str_len(char *str)
 		len++, str++;
 	return (len / 2);
 }
+
 /**
  * _calloc - allocates memory for an array using malloc
  * @bytes: bytes of memory needed per size requested
  * @size: size in bytes of each element
  * Return: pointer to the allocated memory
  */
+
 void *_calloc(unsigned int bytes, unsigned int size)
 {
 	unsigned int i;
@@ -35,6 +39,7 @@ void *_calloc(unsigned int bytes, unsigned int size)
 		p[i] = 0;
 	return ((void *)p);
 }
+
 /**
  * add_arrays - adds 2 arrays of ints
  * @mul_result: pointer to array with numbers from product
@@ -42,6 +47,7 @@ void *_calloc(unsigned int bytes, unsigned int size)
  * @len_r: length of both arrays
  * Return: void
  */
+
 void add_arrays(int *mul_result, int *sum_result, int len_r)
 {
 	int i = 0, len_r2 = len_r - 1, carry = 0, sum;
@@ -55,11 +61,13 @@ void add_arrays(int *mul_result, int *sum_result, int len_r)
 		len_r2--;
 	}
 }
+
 /**
  * is_digit - checks for digits
  * @c: input character to check for digit
  * Return: 0 failure, 1 success
  */
+
 int is_digit(char c)
 {
 	if (c >= '0' && c <= '9')
@@ -67,6 +75,7 @@ int is_digit(char c)
 	printf("Error\n");
 	return (0);
 }
+
 /**
  * multiply - multiplies 2 #'s, prints result, must be 2 #'s
  * @num1: factor # 1 (is the smaller of 2 numbers)
@@ -76,6 +85,7 @@ int is_digit(char c)
  * @len_r: length of result arrays
  * Return: 0 fail, 1 success
  */
+
 int *multiply(char *num1, int len_1, char *num2, int len_2, int len_r)
 {
 	int i = 0, i1 = len_1 - 1;
@@ -105,12 +115,14 @@ int *multiply(char *num1, int len_1, char *num2, int len_2, int len_r)
 	}
 	return (sum_result);
 }
+
 /**
  * print_me - prints my array of the hopeful product here
  * @sum_result: pointer to int array with numbers to add
  * @len_r: length of result array
  * Return: void
  */
+
 void print_me(int *sum_result, int len_r)
 {
 	int i = 0;
@@ -123,12 +135,14 @@ void print_me(int *sum_result, int len_r)
 		_putchar(sum_result[i++] + '0');
 	_putchar('\n');
 }
+
 /**
  * main - multiply 2 input #'s of large lengths and print result or print Error
  * @argc: input count of args
  * @argv: input array of string args
  * Return: 0, Success
  */
+
 int main(int argc, char **argv)
 {
 	int len_1, len_2, len_r, temp, *sum_result;
