@@ -1,10 +1,13 @@
+#include <stdio.h>
+
 /**
  * main - check the code
  *
  * Return: Always 0.
  */
-int main(int argc, char **argv)
+
+int main(void)
 {
-    #define *argv = __FILE__;
-    return (0);
-i}
+	printf("%s\n", __FILE__);
+	return (0);
+}
