@@ -1,15 +1,16 @@
 #include "variadic_functions.h"
+#include <stdlib.h>
 
 /**
   * print_all - Prints anything
   * @format: The conversion specifier to prints
+  *
   * Return: Nothing
   */
-
 void print_all(const char * const format, ...)
 {
 	va_list args;
-	format form_types[] = {
+	f_dt form_types[] = {
 		{ "c", print_a_char },
 		{ "i", print_a_integer },
 		{ "f", print_a_float },
@@ -47,7 +48,6 @@ void print_all(const char * const format, ...)
   *
   * Return: Nothing
   */
-
 void print_a_char(char *separator, va_list args)
 {
 	printf("%s%c", separator, va_arg(args, int));
@@ -60,7 +60,6 @@ void print_a_char(char *separator, va_list args)
   *
   * Return: Nothing
   */
-
 void print_a_integer(char *separator, va_list args)
 {
 	printf("%s%i", separator, va_arg(args, int));
@@ -73,7 +72,6 @@ void print_a_integer(char *separator, va_list args)
   *
   * Return: Nothing
   */
-
 void print_a_float(char *separator, va_list args)
 {
 	printf("%s%f", separator, va_arg(args, double));
@@ -86,7 +84,6 @@ void print_a_float(char *separator, va_list args)
   *
   * Return: Nothing
   */
-
 void print_a_char_ptr(char *separator, va_list args)
 {
 	char *arg = va_arg(args, char *);
