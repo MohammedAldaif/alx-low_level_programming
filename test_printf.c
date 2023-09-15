@@ -1,7 +1,4 @@
-nclude <stdio.h>
-#include <stdarg.h>
-#include <unistd.h>
-
+#include "mymain.h"
 int _printf(const char *format, ...) {
 	int chars_count = 0;
 
@@ -23,8 +20,7 @@ int _printf(const char *format, ...) {
 			if (*format == 'c')
 			{
 				c = va_arg(list, int);
-				write(1, &c, 1); // Use 1 instead of STDOUT_FILENO
-				chars_count++;
+				print_char(c, chars_count);
 			}
 			else if (*format == 's')
 			{
