@@ -25,23 +25,17 @@ int _printf(const char *format, ...) {
 			else if (*format == 's')
 			{
 				string = va_arg(list, char*);
-				while (*string)
-				{
-					write(1, string, 1); // Use 1 instead of STDOUT_FILENO
-					string++;
-					chars_count++;
-				}
+				print_string(string, chars_count);
 			}
 			else if (*format == '%')
 			{
-				write(1, "%", 1); // Use 1 instead of STDOUT_FILENO
+				write(1, "%", 1);
 				chars_count++;
 			}
 		}
 		else
 		{
-			write(1, format, 1); // Use 1 instead of STDOUT_FILENO
-			chars_count++;
+			print_char(*format, chars_count);
 		}
 		format++;
 	}
