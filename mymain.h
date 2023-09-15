@@ -5,7 +5,11 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-void print_char(char c, int chars_count);
-int _putchar(int c);
-void print_string(char* string, int chars_count);
+void handle_char(char c, int chars_count);
+void handle_string(char* string, int chars_count);
+void handle_d_i(int i);
+void handle_binary(unsigned int i);
+void handle_unsigned(unsigned int);
+void handle_octal(unsigned int);
+void handle_hexadecimal(unsigned int);
 #endif
