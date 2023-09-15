@@ -14,9 +14,7 @@ int _printf(const char *format, ...) {
 		{
 			format++;
 			if (*format == '\0')
-			{
 				break;
-			}
 			if (*format == 'c')
 			{
 				c = va_arg(list, int);
