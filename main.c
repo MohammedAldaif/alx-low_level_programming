@@ -10,11 +10,13 @@
 
 int main(void)
 {
-	int c = _printf("hello");
-	printf("char count = %d", c);
-	_printf("Character:[%c]\n", 'H');
-    printf("Character:[%c]\n", 'H');
-    _printf("String:[%s]\n", "I am a string !");
-    printf("String:[%s]\n", "I am a string !");
+unsigned int ui;
+ui = (unsigned int)INT_MAX + 1024;
+_printf("Unsigned:[%u]\n", ui);
+    printf("Unsigned:[%u]\n", ui);
+ _printf("Length:[%d, %i]\n", 54,54);
+    printf("Length:[%d, %i]\n", 98, 98);
+    _printf("Negative:[%d]\n", -762534);
+    printf("Negative:[%d]\n", -762534);
  return 0;
 }
