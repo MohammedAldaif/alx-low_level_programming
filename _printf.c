@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * _printf -entry point of the project
+ * _printf - entry point of the project
  * @format: input
- * Return: string.
+ * Return: int.
  */
 
 int _printf(const char *format, ...)
@@ -22,11 +22,11 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			handle_char(*format);
+			_putchar(*format);
 			chars_count++;
 		}
 		format++;
 	}
-	va_end(args);
+	va_end(list);
 	return (chars_count);
 }
