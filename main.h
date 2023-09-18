@@ -1,22 +1,29 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
-#include <limits.h>
 
-int _putchar(char character);
-int handle_char(va_list args, int printed);
-int handle_string(va_list args, int printed);
-int handle_d_i(va_list args, int printed);
-int handle_specifier(const char *format, va_list args, int printed);
-int handle_binary(unsigned int num, int chars_count);
+#define FLAG_PLUS   (1 << 0)
+#define FLAG_SPACE  (1 << 1)
+#define FLAG_HASH   (1 << 2)
+#define FLAG_MINUS  (1 << 3)
+#define FLAG_ZERO   (1 << 4)
+
 int _printf(const char *format, ...);
-int handle_hexadecimal(unsigned int num, int printed, int uppercase);
-int handle_octal(unsigned int num, int printed);
-int handle_unsigned_int(unsigned int num, int printed);
-int handle_reverse(va_list args, int printed);
-int handle_p(va_list args, int printed);
+int _print_char(char c, char *buffer, int *buf_index);
+int _print_string(char *str, char *buffer, int *buf_index);
+int _print_percent(char *buffer, int *buf_index);
+int _print_integer(int n, char *buffer, int *buf_index, int flags, char length, int width);
+int _print_binary(unsigned int n, char *buffer, int *buf_index);
+int _print_unsigned(unsigned int n, char *buffer, int *buf_index, int flags, char length, int width);
+int _print_octal(unsigned int n, char *buffer, int *buf_index, int flags, char length, int width);
+int _print_hex_lower(unsigned int n, char *buffer, int *buf_index, int flags, char length, int width);
+int _print_hex_upper(unsigned int n, char *buffer, int *buf_index, int flags, char length, int field_width);
+int _print_special_string(char *str, char *buffer, int *buf_index);
+int _print_pointer(void *ptr, char *buffer, int *buf_index);
+int _print_reverse(char *str, char *buffer, int *buf_index);
+int _print_rot13(char *str, char *buffer, int *buf_index);
 
-#endif
+#endif /* MAIN_H */
+
