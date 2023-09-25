@@ -30,6 +30,7 @@ size_t listint_len(const listint_t *h)
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
 	listint_t *traverse = *head;
+	listint_t *temp;
 
 	if (traverse == NULL)
 		return (-1);
@@ -51,7 +52,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		index--;
 	}
 
-	listint_t *temp = traverse->next;
+	temp  = traverse->next;
 
 	traverse->next = temp->next;
 	free(temp); /* Free the deleted node */
