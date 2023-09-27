@@ -9,41 +9,41 @@ size_t print_listint_safe(const listint_t *head);
  * Return: int.
  */
 
-size_t count_unique_nodes(const listint_t *head)
+size_t looped_listint_len(const listint_t *head)
 {
-	const listint_t *traverse_by_one_step, *traverse_by_two_steps;
-	size_t num_of_elements = 1;
+	const listint_t *tortoise, *hare;
+	size_t nodes = 1;
 
 	if (head == NULL || head->next == NULL)
 		return (0);
 
-	traverse_by_one_step = head->next;
-	traverse_by_two_steps = (head->next)->next;
+	tortoise = head->next;
+	hare = (head->next)->next;
 
-	while (traverse_by_two_steps)
+	while (hare)
 	{
-		if (traverse_by_one_step == traverse_by_two_steps)
+		if (tortoise == hare)
 		{
-			traverse_by_one_step = head;
-			while (traverse_by_one_step != traverse_by_two_steps)
+			tortoise = head;
+			while (tortoise != hare)
 			{
-				num_of_elements++;
-				traverse_by_one_step = traverse_by_one_step->next;
-				traverse_by_two_steps = traverse_by_two_steps->next;
+				nodes++;
+				tortoise = tortoise->next;
+				hare = hare->next;
 			}
 
-			traverse_by_one_step = traverse_by_one_step->next;
-			while (traverse_by_one_step != traverse_by_two_steps)
+			tortoise = tortoise->next;
+			while (tortoise != hare)
 			{
-				num_of_elements++;
-				traverse_by_one_step = traverse_by_one_step->next;
+				nodes++;
+				tortoise = tortoise->next;
 			}
 
-			return (num_of_elements);
+			return (nodes);
 		}
 
-		traverse_by_one_step = traverse_by_one_step->next;
-		traverse_by_two_steps = (traverse_by_two_steps->next)->next;
+		tortoise = tortoise->next;
+		hare = (hare->next)->next;
 	}
 
 	return (0);
@@ -57,21 +57,22 @@ size_t count_unique_nodes(const listint_t *head)
 
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t num_of_elements, i = 0;
+	size_t nodes, index = 0;
 
-	num_of_elements = count_unique_nodes(head);
+	nodes = looped_listint_len(head);
 
-	if (num_of_elements == 0)
+	if (nodes == 0)
 	{
-		for (; head != NULL; num_of_elements++)
+		for (; head != NULL; nodes++)
 		{
 			printf("[%p] %d\n", (void *)head, head->n);
 			head = head->next;
 		}
 	}
+
 	else
 	{
-		for (i = 0; i < num_of_elements; i++)
+		for (index = 0; index < nodes; index++)
 		{
 			printf("[%p] %d\n", (void *)head, head->n);
 			head = head->next;
@@ -80,5 +81,5 @@ size_t print_listint_safe(const listint_t *head)
 		printf("-> [%p] %d\n", (void *)head, head->n);
 	}
 
-	return (num_of_elements);
+	return (nodes);
 }
