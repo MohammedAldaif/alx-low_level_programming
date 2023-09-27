@@ -9,33 +9,44 @@ size_t print_listint_safe(const listint_t *head);
  * Return: int.
  */
 
-size_t looped_listint_len(const listint_t *head)
+size_t count_unique_nodes(const listint_t *head)
 {
-	const listint_t *tortoise, *hare;
+	const listint_t *traverse_by_one_step, *traverse_by_two_steps;
 	size_t num_of_elements = 1;
 
 	if (head == NULL || head->next == NULL)
 		return (0);
 
-	tortoise = head->next;
-	hare = (head->next)->next;
+	traverse_by_one_step = head->next;
+	traverse_by_two_steps = (head->next)->next;
 
-	for (; hare; num_of_elements++)
+	while (traverse_by_two_steps)
 	{
-		if (tortoise == hare)
-			break;
+		if (traverse_by_one_step == traverse_by_two_steps)
+		{
+			traverse_by_one_step = head;
+			while (traverse_by_one_step != traverse_by_two_steps)
+			{
+				num_of_elements++;
+				traverse_by_one_step = traverse_by_one_step->next;
+				traverse_by_two_steps = traverse_by_two_steps->next;
+			}
 
-		tortoise = tortoise->next;
-		hare = hare->next;
+			traverse_by_one_step = traverse_by_one_step->next;
+			while (traverse_by_one_step != traverse_by_two_steps)
+			{
+				num_of_elements++;
+				traverse_by_one_step = traverse_by_one_step->next;
+			}
+
+			return (num_of_elements);
+		}
+
+		traverse_by_one_step = traverse_by_one_step->next;
+		traverse_by_two_steps = (traverse_by_two_steps->next)->next;
 	}
 
-	tortoise = tortoise->next;
-	for (; tortoise != hare; num_of_elements++)
-	{
-		tortoise = tortoise->next;
-	}
-
-	return (num_of_elements);
+	return (0);
 }
 
 /**
@@ -48,7 +59,7 @@ size_t print_listint_safe(const listint_t *head)
 {
 	size_t num_of_elements, i = 0;
 
-	num_of_elements = looped_listint_len(head);
+	num_of_elements = count_unique_nodes(head);
 
 	if (num_of_elements == 0)
 	{
