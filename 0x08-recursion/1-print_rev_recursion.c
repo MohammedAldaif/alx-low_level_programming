@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_rev_recursion - function
+ * _print_rev_recursion - function
  * @s: input
  * Return: void.
  */
