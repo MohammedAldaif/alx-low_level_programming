@@ -32,6 +32,7 @@ int _strlen(char *str)
 
 char *_strdup(char *str)
 {
+	char *copy;
 	int i = 0;
 
 	if (str == NULL)
@@ -39,7 +40,7 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 
-	char *copy = malloc(sizeof(char) * (_strlen(str) + 1));
+	copy = malloc(sizeof(char) * (_strlen(str) + 1));
 
 	if (copy == NULL)
 	{
