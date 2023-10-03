@@ -14,6 +14,10 @@ int **alloc_grid(int width, int height)
 	int i, j;
 	int **one_dim_arr_ptr;
 
+	if (width <= 0 || height <= 0)
+	{
+		return (NULL);
+	}
 	one_dim_arr_ptr = malloc(sizeof(int *) * height);
 	if (one_dim_arr_ptr == NULL)
 	{
