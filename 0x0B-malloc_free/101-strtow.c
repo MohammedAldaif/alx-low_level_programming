@@ -49,18 +49,18 @@ int count_words(char *str)
 
 char **strtow(char *str)
 {
+	int num_words, word_index;
+	char **words;
+
 	if (str == NULL || *str == '\0')
 		return (NULL);
-	int num_words = count_words(str);
-
+	num_words = count_words(str);
 	if (num_words == 0)
 		return (NULL);
-	char **words = (char **)malloc((num_words + 1) * sizeof(char *));
-
+	*words = (char **)malloc((num_words + 1) * sizeof(char *));
 	if (words == NULL)
 		return (NULL);
-	int word_index = 0;
-	bool in_word = false;
+	word_index = 0, bool in_word = false;
 	char *word_start = str;
 
 	while (*str)
@@ -90,4 +90,3 @@ char **strtow(char *str)
 	words[word_index] = NULL;
 	return (words);
 }
-
