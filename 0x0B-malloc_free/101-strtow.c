@@ -1,91 +1,89 @@
-#include "main.h"
-#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * is_space - Checks if a character is a space.
- * @c: The character to check.
- * Return: true if the character is a space, false otherwise.
+ * number_of_words - function
+ * @str: input
+ * Return: int
  */
 
-bool is_space(char c)
+int number_of_words(char *str)
 {
-	return (c == ' ' || c == '\t' || c == '\n');
-}
+	int a, num = 0;
 
-/**
- * count_words - Counts the number of words in a string.
- * @str: The input string.
- * Return: The number of words in the string.
- */
-
-int count_words(char *str)
-{
-	int word_count = 0;
-	bool in_word = false;
-
-	while (*str)
+	for (a = 0; str[a] != '\0'; a++)
 	{
-		if (is_space(*str))
+		if (*str == ' ')
+			str++;
+		else
 		{
-			in_word = false;
+			for (; str[a] != ' ' && str[a] != '\0'; a++)
+				str++;
+			num++;
 		}
-		else if (!in_word)
-		{
-			word_count++;
-			in_word = true;
-		}
-		str++;
 	}
-
-	return (word_count);
+	return (num);
 }
 
 /**
- * strtow - Splits a string into words.
- * @str: The input string.
- * Return: A pointer to an array of strings
- * (words), with the last element being NULL.
+ * free_everything - function
+ * @string: input
+ * @i: input
+ */
+
+void free_everything(char **string, int i)
+{
+	for (; i > 0;)
+		free(string[--i]);
+	free(string);
+}
+
+/**
+ * strtow - function
+ * @str: input
+ * Return: pointer
  */
 
 char **strtow(char *str)
 {
-	int num_words, word_index;
-	char **words, *word_start;
-	bool in_word;
+	int total_words = 0, b = 0, c = 0, length = 0;
+	char **words, *found_word;
 
-	if (str == NULL || *str == '\0')
+	if (str == 0 || *str == 0)
 		return (NULL);
-	num_words = count_words(str);
-	if (num_words == 0)
+	total_words = number_of_words(str);
+	if (total_words == 0)
 		return (NULL);
-	words = (char **)malloc((num_words + 1) * sizeof(char *));
-	if (words == NULL)
+	words = malloc((total_words + 1) * sizeof(char *));
+	if (words == 0)
 		return (NULL);
-	word_index = 0, in_word = false, word_start = str;
-	while (*str)
+	for (; *str != '\0' &&  b < total_words;)
 	{
-		if (is_space(*str))
+		if (*str == ' ')
+			str++;
+		else
 		{
-			if (in_word)
+			found_word = str;
+			for (; *str != ' ' && *str != '\0';)
 			{
-				*str = '\0';
-				words[word_index] = word_start;
-				word_index++;
-				in_word = false;
+				length++;
+				str++;
 			}
+			words[b] = malloc((length + 1) * sizeof(char));
+			if (words[b] == 0)
+			{
+				free_everything(words, b);
+				return (NULL);
+			}
+			while (*found_word != ' ' && *found_word != '\0')
+			{
+				words[b][c] = *found_word;
+				found_word++;
+				c++;
+			}
+			words[b][c] = '\0';
+			b++, c = 0, length = 0, str++;
 		}
-		else if (!in_word)
-		{
-			word_start = str;
-			in_word = true;
-		}
-		str++;
 	}
-	if (in_word)
-	{
-		words[word_index] = word_start;
-		word_index++;
-	}
-	words[word_index] = NULL;
 	return (words);
 }
