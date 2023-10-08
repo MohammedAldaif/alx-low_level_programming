@@ -1,38 +1,48 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
  * _realloc - function
- * @ptr: pointer
- * @old_size:input
- * @new_size:input
- * Return: void pointer
+ * @ptr: input
+ * @old_size: input
+ * @new_size: input
+ * Return: 0
  */
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-
-	int *p;
-	int *copy;
-	int i;
+	char *p;
+	char *copy;
+	unsigned int i;
+	unsigned int max;
 
 	i = 0;
-	copy = (int *) ptr;
+	max = new_size;
+	copy = ptr;
 
-	if (new_size == old_size)
-		return (ptr);
-	if (new_size == 0 && ptr != NULL)
+	if (ptr == NULL)
+	{
+		p = malloc(new_size);
+		return (p);
+	}
+	else if (new_size == 0)
 	{
 		free(ptr);
 		return (NULL);
 	}
+	else if (new_size == old_size)
+		return (ptr);
+
 	p = malloc(new_size);
 	if (p == NULL)
 		return (NULL);
-	while (i < old_size)
+	if (new_size > old_size)
+		max = old_size;
+	while (i < max)
 	{
 		p[i] = copy[i];
 		i++;
 	}
-	free(copy);
+	free(ptr);
 	return (p);
 }
