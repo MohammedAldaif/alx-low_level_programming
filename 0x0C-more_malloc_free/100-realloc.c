@@ -11,6 +11,10 @@
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 70c537c8795801873fbbf6b432e646c293865915
 	char *p;
 	char *copy;
 	unsigned int i;
@@ -18,14 +22,24 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	i = 0;
 	max = new_size;
+<<<<<<< HEAD
 	copy = ptr;
+=======
+	copy = (char *) ptr;
+>>>>>>> 70c537c8795801873fbbf6b432e646c293865915
 
 	if (ptr == NULL)
 	{
 		p = malloc(new_size);
 		return (p);
 	}
+<<<<<<< HEAD
 	else if (new_size == 0)
+=======
+	if (new_size == old_size)
+		return (ptr);
+	if (new_size == 0 && ptr != NULL)
+>>>>>>> 70c537c8795801873fbbf6b432e646c293865915
 	{
 		free(ptr);
 		return (NULL);
