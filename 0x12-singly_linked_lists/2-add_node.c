@@ -1,26 +1,6 @@
 #include "lists.h"
 
 /**
- * _strlen - counts string length
- * @str: input
- * Return: num of characters in a string
- */
-
-int _strlen(char *str)
-{
-	int i;
-
-	i = 0;
-
-	while (*str != '\0')
-	{
-		i++;
-		str++;
-	}
-	return (i);
-}
-
-/**
  * add_node - function
  * @head: pointer to pointer
  * receives the head pointer
