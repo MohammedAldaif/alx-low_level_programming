@@ -22,7 +22,7 @@ int pop_listint(listint_t **head)
 		return (data);
 	}
 	temp = (*head)->next;
-	*head = NULL;
+	free(*head);
 	*head = temp;
 	return (data);
 }
