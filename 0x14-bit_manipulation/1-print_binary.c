@@ -8,10 +8,10 @@ void print_binary(unsigned long int number);
  * Return: void
  */
 
-void print_positive_binary(unsigned long int number)
+void print_positive_binary(long int number)
 {
-	unsigned long int temp = 0;
-	unsigned long int max = 1;
+	long int temp = 0;
+	long int max = 1;
 
 	if (number == 0)
 	{
