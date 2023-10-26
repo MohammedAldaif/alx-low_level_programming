@@ -1,14 +1,17 @@
 #include "main.h"
 
-void print_binary(unsigned long int number);
+#define bit32_range (4294967296)
+
+void print_binary(long int number, int *count);
 
 /**
  * print_positive_binary - print the binary representation of a positive number
  * @number: the positive number to print
+ * @count: a pointer to the count of printed characters
  * Return: void
  */
 
-void print_positive_binary(long int number)
+void print_positive_binary(long int number, int *count)
 {
 	long int temp = 0;
 	long int max = 1;
@@ -16,6 +19,7 @@ void print_positive_binary(long int number)
 	if (number == 0)
 	{
 		_putchar('0');
+		(*count)++;
 		return;
 	}
 	while (max <= number)
@@ -31,10 +35,12 @@ void print_positive_binary(long int number)
 		{
 			_putchar('1');
 			number = number - temp;
+			(*count)++;
 		}
 		else
 		{
 			_putchar('0');
+			(*count)++;
 		}
 		max = max / 2;
 		temp = temp / 2;
@@ -44,9 +50,15 @@ void print_positive_binary(long int number)
 /**
  * print_binary - print the binary representation of a number
  * @number: the number to print
+ * @count: a pointer to the count of printed characters
  */
 
-void print_binary(unsigned long int number)
+void print_binary(long int number, int *count)
 {
-	print_positive_binary(number);
+	if (number < 0)
+	{
+		number = -number;
+		number = bit32_range - number;
+	}
+	print_positive_binary(number, count);
 }
