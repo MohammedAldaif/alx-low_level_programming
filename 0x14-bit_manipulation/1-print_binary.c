@@ -2,7 +2,7 @@
 
 #define bit32_range (4294967296)
 
-void print_binary(long int n);
+void print_binary(unsigned long int n);
 
 /**
  * print_positive_binary - print the binary representation of a positive number
@@ -48,12 +48,13 @@ void print_positive_binary(long int number)
  * @n: the number to print
  */
 
-void print_binary(long int n)
+void print_binary(unsigned long int n)
 {
-	if (n < 0)
+	long int num = n;
+	if (num < 0)
 	{
-		n = -n;
-		n = bit32_range - n;
+		num = -num;
+		num = bit32_range - num;
 	}
-	print_positive_binary(n);
+	print_positive_binary(num);
 }
