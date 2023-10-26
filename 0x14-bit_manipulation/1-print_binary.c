@@ -1,60 +1,18 @@
 #include "main.h"
 
-#define bit32_range (4294967296)
-
-void print_binary(unsigned long int n);
-
 /**
- * print_positive_binary - print the binary representation of a positive number
- * @number: the positive number to print
- * Return: void
- */
-
-void print_positive_binary(long int number)
-{
-	long int temp = 0;
-	long int max = 1;
-
-	if (number == 0)
-	{
-		_putchar('0');
-		return;
-	}
-	while (max <= number)
-	{
-		max = max * 2;
-	}
-	max = max / 2;
-	temp = max;
-
-	while (max > 0)
-	{
-		if (temp <= number)
-		{
-			_putchar('1');
-			number = number - temp;
-		}
-		else
-		{
-			_putchar('0');
-		}
-		max = max / 2;
-		temp = temp / 2;
-	}
-}
-
-/**
- * print_binary - print the binary representation of a number
- * @n: the number to print
+ * print_binary - func print binary representation of number
+ * @n: integer
+ * Return: Always 0.
  */
 
 void print_binary(unsigned long int n)
 {
-	long int num = n;
-	if (num < 0)
+
+	if (n > 1)
 	{
-		num = -num;
-		num = bit32_range - num;
+		print_binary(n >> 1);
 	}
-	print_positive_binary(num);
+	_putchar((n & 1) + '0');
+
 }
