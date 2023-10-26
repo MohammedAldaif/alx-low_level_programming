@@ -15,7 +15,7 @@ unsigned int binary_to_uint(const char *b)
 	unsigned int result;
 
 	i = 0;
-	j = 0;
+	j = 1;
 	len = 0;
 	result = 0;
 
