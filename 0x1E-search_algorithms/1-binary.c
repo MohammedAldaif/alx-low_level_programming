@@ -25,7 +25,7 @@ int binary_search_recursive(int *array, int value, size_t left, size_t right);
 
 int binary_search(int *array, size_t size, int value)
 {
-	if (size == 0 || !array)
+	if (!array)
 		return (-1);
 
 	return (binary_search_recursive(array, value, 0, size - 1));
