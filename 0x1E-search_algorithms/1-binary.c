@@ -54,7 +54,7 @@ int binary_search_recursive(int *array, int value, size_t left, size_t right)
 			if (test == array[right])
 				printf("%d\n", test);
 			else
-				printf("%d,", test);
+				printf("%d, ", test);
 			test++;
 		}
 		if (array[medium] == value)
