@@ -1,57 +1,43 @@
-#include<stdio.h>
-#include <stdlib.h>
-#include "search_algos.h"
+#include <stdio.h>
 
-/**
- * interpolaton_search_recursive - function
- * @array: var
- * @size: var
- * @value: var
- * @low: var
- * @high: var
- * Return:int
- **/
-int interpolation_search_recursive(int *array, size_t low,
-		size_t high, size_t size, int value);
 /**
  * interpolation_search - function
- * @array: var
- * @size: var
- * @value: var
- * Return:int
+ * @array: pointer
+ * @size: int
+ * @value: int
+ * Return: int
  **/
+
 int interpolation_search(int *array, size_t size, int value)
 {
-	return (interpolation_search_recursive(array, 0, size - 1, size, value));
-}
+	size_t low, high, pos;
 
-/**
- * interpolaton_search_recursive - function
- * @array: var
- * @size: var
- * @low: var
- * @high: var
- * @value: var
- * Return:int
- **/
+	low = 0;
+	high = size - 1;
 
-int interpolation_search_recursive(int *array, size_t low,
-		size_t high, size_t size, int value)
-{
-	size_t pos;
+	pos = low + (((double)(high - low) /
+	(array[high] - array[low])) * (value - array[low]));
 
-	if (!array)
-		return (-1);
-	pos = low + (((double)(high - low) / (array[high]
-					- array[low])) * (value - array[low]));
-	if (array[pos] == value)
-		printf("value index = %d\n", (int)pos);
-	else if (value > array[pos])
+	while (low <= high && value >= array[low] && value <= array[high])
 	{
-		low = array[pos] + 1;
-		return (interpolation_search_recursive(array, low, size - 1, size, value));
+		pos = low + (((double)(high - low) /
+		(array[high] - array[low])) * (value - array[low]));
+
+		printf("Value checked array[%d] = [%d]\n", (int)pos, (int)array[pos]);
+
+		if (array[pos] == value)
+		{
+			return (pos);
+		}
+		else if (array[pos] < value)
+		{
+			low = pos + 1;
+		}
+		else
+		{
+			high = pos - 1;
+		}
 	}
-	else if (value < array[pos])
-		printf("value < pos\n");
-	return (0);
+	printf("Value checked array[%d] is out of range\n", (int)pos);
+	return (-1);
 }
