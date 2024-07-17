@@ -1,96 +1,82 @@
-#include<stdio.h>
-#include<math.h>
 #include "search_algos.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * minimum - function
- * @a: var
- * @b: var
- * Return: size_t
- **/
-
-
-size_t minimum(size_t a, size_t b);
-
-/**
- * exponential_search - function
- * @array: pointer
- * @size: var
- * @value: int
- * Return: int
- **/
-
-int exponential_search(int *array, size_t size, int value)
-{
-	size_t i;
-
-	if (!array)
-		return (-1);
-	if (array[0] == value)
-		return (0);
-	i = 1;
-
-	while (i < size && array[i] <= value)
-	{
-		printf("Value checked array[%d] = [%d]\n", (int)i, (int)array[i]);
-		i *= 2;
-	}
-	printf("Value found between indexes [%d] and
-		[%d]\n", (int)i / 2, (int) minimum(i, size - 1));
-	return (binary_search_recursive(array, value, i / 2, minimum(i, size - 1)));
-
+ * print_array - Prints an array of integers
+ *
+ * @array: The array to be printed
+ * @left: The left index of the subarray to print
+ * @right: The right index of the subarray to print
+ */
+void print_array(int *array, size_t left, size_t right) {
+    printf("Searching in array: ");
+    for (size_t i = left; i <= right; i++) {
+        printf("%d", array[i]);
+        if (i < right) {
+            printf(", ");
+        }
+    }
+    printf("\n");
 }
 
 /**
- * binary_search_recursive - function
- * @array: pointer
- * @value: int
- * @left: int
- * @right: int
- * Return: int
- **/
+ * binary_search - Searches for a value in a sorted array of integers
+ *                 using the Binary search algorithm
+ *
+ * @array: Pointer to the first element of the array to search in
+ * @left: Left index of the subarray to search in
+ * @right: Right index of the subarray to search in
+ * @value: Value to search for
+ *
+ * Return: The index where value is located, or -1 if not found
+ */
+int binary_search(int *array, size_t left, size_t right, int value) {
+    while (left <= right) {
+        print_array(array, left, right);
+        size_t mid = left + (right - left) / 2;
 
-
-int binary_search_recursive(int *array, int value, size_t left, size_t right)
-{
-	if (left <= right)
-	{
-		size_t i;
-		size_t mid;
-
-		printf("Searching in array: ");
-		for (i = left; i <= right; i++)
-		{
-			printf("%d", array[i]);
-			if (i < right)
-				printf(", ");
-			else
-				printf("\n");
-		}
-
-		mid = left + (right - left) / 2;
-
-		if (array[mid] == value)
-			return (mid);
-		else if (array[mid] > value)
-			return (binary_search_recursive(array, value, left, mid - 1));
-		else
-			return (binary_search_recursive(array, value, mid + 1, right));
-	}
-
-	return (-1);
+        if (array[mid] == value) {
+            return mid;
+        } else if (array[mid] < value) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
 }
 
 /**
- * minimum - function
- * @a: var
- * @b: var
- * Return: size_t
- **/
+ * exponential_search - Searches for a value in a sorted array of integers
+ *                      using the Exponential search algorithm
+ *
+ * @array: Pointer to the first element of the array to search in
+ * @size: The number of elements in array
+ * @value: The value to search for
+ *
+ * Return: The first index where value is located, or -1 if not present
+ */
+int exponential_search(int *array, size_t size, int value) {
+    if (array == NULL || size == 0) {
+        return -1;
+    }
 
-size_t minimum(size_t a, size_t b)
-{
-	if (a < b)
-		return (a);
-	return (b);
+    // If the value is at the first position
+    if (array[0] == value) {
+        return 0;
+    }
+
+    // Find the range for binary search by repeated doubling
+    size_t bound = 1;
+    while (bound < size && array[bound] <= value) {
+        printf("Value checked array[%lu] = [%d]\n", bound, array[bound]);
+        bound *= 2;
+    }
+
+    // Perform binary search in the found range
+    size_t left = bound / 2;
+    size_t right = (bound < size) ? bound : size - 1;
+    printf("Value found between indexes [%lu] and [%lu]\n", left, right);
+    return binary_search(array, left, right, value);
 }
